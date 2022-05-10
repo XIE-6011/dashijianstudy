@@ -3,7 +3,7 @@ html,body{
     padding: 0;
     height: 100%;
     width: 100%;
-   background:url('/大事件项目/assets/images/login_bg.jpg') ;
+   background:url('/web/assets/images/login_bg.jpg') ;
 }
  .loginBox{
      width: 400px;
@@ -17,7 +17,7 @@ html,body{
 }
 .titleBox{
     height: 60px;
-    background: url('/大事件项目/assets/images/login_title.png');
+    background: url('/web/assets/images/login_title.png');
     background-repeat: no-repeat;
     background-position: center;
 }

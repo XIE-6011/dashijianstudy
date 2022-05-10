@@ -6,9 +6,9 @@ const bcrypt = require('bcryptjs')
 // 获取用户基本信息的处理函数
 exports.getUserInfo = (req, res) => {
   // 定义查询用户信息的 SQL 语句
-  const sql = `select id, username, nickname, email, user_pic from ev_users where id=?`
-  // 调用 db.query() 执行 SQL 语句
-  db.query(sql, req.user.id, (err, results) => {
+  const sql = `select student_id, student_name  from student where student_name=?`
+  // 调用 db.query() 执行 SQL 语句  
+  db.query(sql, req.user.student_name, (err, results) => {
     // 执行 SQL 语句失败
     if (err) return res.cc(err)
     // 执行 SQL 语句成功，但是查询的结果可能为空
