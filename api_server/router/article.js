@@ -19,5 +19,7 @@ const { add_article_schema } = require('../schema/article')
 
 // 发布文章的路由
 router.post('/add', uploads.single('cover_img'), expressJoi(add_article_schema), article_handler.addArticle)
+router.get('/getqu', article_handler.getquestion)
+
 
 module.exports = router

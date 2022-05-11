@@ -6,9 +6,9 @@ const bcrypt = require('bcryptjs')
 // 获取用户基本信息的处理函数
 exports.getUserInfo = (req, res) => {
   // 定义查询用户信息的 SQL 语句
-  const sql = `select student_id, student_name  from student where student_name=?`
+  const sql = `select student_id, student_name, student_account from student where student_account=?`
   // 调用 db.query() 执行 SQL 语句  
-  db.query(sql, req.user.student_name, (err, results) => {
+  db.query(sql, req.user.student_account, (err, results) => {
     // 执行 SQL 语句失败
     if (err) return res.cc(err)
     // 执行 SQL 语句成功，但是查询的结果可能为空
@@ -25,14 +25,17 @@ exports.getUserInfo = (req, res) => {
 
 // 更新用户基本信息的处理函数
 exports.updateUserInfo = (req, res) => {
+ 
   // 定义待执行的 SQL 语句
-  const sql = `update ev_users set ? where id=?`
+  const sql = `update student set ? where student_id=?`
   // 调用 db.query() 执行 SQL 语句并传递参数
-  db.query(sql, [req.body, req.body.id], (err, results) => {
+  console.log(req.body)
+  db.query(sql, [req.body, req.body.student_id], (err, results) => {
     // 执行 SQL 语句失败
     if (err) return res.cc(err)
     // 执行 SQL 语句成功，但是影响行数不等于 1
     if (results.affectedRows !== 1) return res.cc('更新用户的基本信息失败！')
+
     // 成功
     res.cc('更新用户信息成功！', 0)
   })

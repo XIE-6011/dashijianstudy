@@ -9,9 +9,9 @@ const password = joi
   .required()
 
 // 定义 id, nickname, email 的验证规则
-const id = joi.number().integer().min(1).required()
-const nickname = joi.string().required()
-const user_email = joi.string().email().required()
+const student_id = joi.number().integer().min(1).required()
+const student_name = joi.string().required()
+const student_account = joi.string().required()
 
 // 定义验证 avatar 头像的验证规则
 const avatar = joi.string().dataUri().required()
@@ -28,9 +28,9 @@ exports.reg_login_schema = {
 exports.update_userinfo_schema = {
   // 需要对 req.body 里面的数据进行验证
   body: {
-    id,
-    nickname,
-    email: user_email,
+    student_id,
+student_name, 
+student_account,
   },
 }
 

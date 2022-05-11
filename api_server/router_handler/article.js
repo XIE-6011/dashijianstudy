@@ -27,3 +27,14 @@ exports.addArticle = (req, res) => {
     res.cc('发布文章成功！', 0)
   })
 }
+exports.getquestion = (req, res) => {
+  const sql = `select * from question `
+  db.query(sql, (err, results) => {
+    if (err) return res.cc(err+'获取信息失败')
+    res.send({
+      status: 0,
+      message: '获取题目信息成功！',
+      data: results,
+    })
+  })
+}

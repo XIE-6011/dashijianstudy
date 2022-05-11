@@ -1,0 +1,65 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <link rel="stylesheet" href="/web/assets/lib/layui/css/layui.css"> 
+    <link rel="stylesheet" href="/web/assets/css/question.css">
+</head>
+<body>
+    <table id="demo" lay-filter="test"></table>
+    <script src="/web/assets/lib/jquery.js"></script>
+    <script src="/web/assets/lib/layui/layui.js"></script>
+    <script src="/web/assets/js/question.js"></script>
+    <script src="/web/assets/js/baseapi.js"></script>
+    <script>
+           $(function() {     
+            $.ajax({
+                method: 'get',
+                    url:'/my/article/getqu',
+                    
+                    //请求头
+                 headers:{
+                Authorization:localStorage.getItem('token')||''
+            },
+                success: function(res) {
+                        if (res.status !== 0) {
+                    return layer.msg('获取题目信息失败！')
+                    }
+        layui.use('table', function(){
+        var table = layui.table;
+        
+        //第一个实例
+        table.render({
+            elem: '#demo'
+            ,height: 312
+
+            ,data:res.data //数据接口
+            ,page: true //开启分页
+            ,cols: [[ //表头
+                    {field: 'question_id', title: 'ID', width:80, sort: true, fixed: 'left'}
+                    ,{field: 'question_type', title: '', width:80}
+                    ,{field: 'question_course', title: '课程', width:80, sort: true}
+                    ,{field: 'question_name', title: '题目', width:80} 
+                    ,{field: 'question_opa', title: '选项a', width: 177}
+                    ,{field: 'question_opb', title: '选项b', width: 80, sort: true}
+                    ,{field: 'question_opc', title: '选项c', width: 80, sort: true}
+                    ,{field: 'question_opd', title: '选项d', width: 80}
+                    ,{field: 'question_opright', title: '正确答案', width: 135, sort: true}
+            ]]
+        });
+        
+        });      
+                }
+                })
+                
+            })
+                
+         
+        </script>
+</body>
+</html>
